@@ -8,7 +8,6 @@ import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
-from sklearn.naive_bayes import CategoricalNB
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
 
@@ -97,8 +96,7 @@ class modelTrainer:
 
             accuracy=accuracy_score(y_test,predicted)
             return accuracy 
-            #r2_square = r2_score(y_test, predicted)
-            #return r2_square
+           
             
               
         except Exception as e:
