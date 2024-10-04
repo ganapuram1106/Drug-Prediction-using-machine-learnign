@@ -39,14 +39,14 @@ class DataTransformation:
 
             num_pipeline=Pipeline(
                 steps=[
-                    ('scaler',StandardScaler()),
-                    ('imputer',SimpleImputer(strategy="median"))
+                    ('imputer',SimpleImputer(strategy="median")),
+                    ('scaler',StandardScaler())
                 ]
             )
             cat_pipeline=Pipeline(
                 steps=[
-                    ("label",OneHotEncoder(handle_unknown="ignore")),
-                    ("imputer",SimpleImputer(strategy='most_frequent'))
+                    ("imputer",SimpleImputer(strategy='most_frequent')),
+                    ("label",OneHotEncoder(handle_unknown="ignore"))
                 ]
             )
             logging.info(f"Categorical columns:{categorical_columns}")

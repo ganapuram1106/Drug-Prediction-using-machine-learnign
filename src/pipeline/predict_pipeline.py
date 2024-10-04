@@ -5,7 +5,7 @@ import pandas as pd
 from src.exception import CustomException
 from src.utils import load_object
 
-class predictPipeline:
+class PredictPipeline:
     def __init__(self):
         pass
 
@@ -13,13 +13,14 @@ class predictPipeline:
     def predict(self,features):
         try:
             model_path=os.path.join("artifacts","model.pkl")
-            preprocessor_path=os.path.join('artifacts','preprocessor.pkl')
-            print("Before Loading")
+            preprocessor_path=os.path.join("artifacts","preprocessor.pkl")
+            print("Before load")
             model=load_object(file_path=model_path)
             preprocessor=load_object(file_path=preprocessor_path)
-            print("After Loading")
+            print("after loading")
             data_scaled=preprocessor.transform(features)
             preds=model.predict(data_scaled)
+
             return preds
         
         except Exception as e:
@@ -34,14 +35,14 @@ class CustomData:
         self.Sex=Sex
         self.BP=BP
         self.Cholesterol=Cholesterol
-        self.Na_to_K=Na_to_K
+        self.Na_to_K= Na_to_K
 
 
-    def get_data_as_dataframe(self):
+    def get_data_as_data_frame(self):
         try:
             custom_data_input_dict={
                 "Age":[self.Age],
-                "sex":[self.Sex],
+                "Sex":[self.Sex],
                 "BP":[self.BP],
                 "Cholesterol":[self.Cholesterol],
                 "Na_to_K":[self.Na_to_K]

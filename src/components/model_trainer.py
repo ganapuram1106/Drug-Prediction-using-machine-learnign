@@ -35,11 +35,11 @@ class modelTrainer:
             )
 
             models={
+                
                 "LogisticRegression":LogisticRegression(),
                 "RandomForest":RandomForestClassifier(),
                 "KNN":KNeighborsClassifier(),
-                "SVM":SVC(),
-                
+                "SVM":SVC()
 
             }
 
