@@ -10,7 +10,7 @@ class predictPipeline:
         pass
 
 
-    def predict(self):
+    def predict(self,features):
         try:
             model_path=os.path.join("artifacts","model.pkl")
             preprocessor_path=os.path.join('artifacts','preprocessor.pkl')
@@ -28,14 +28,8 @@ class predictPipeline:
 
 
 class CustomData:
-    def __init__(self,
-                 Age:int,
-                 Sex:str,
-                 BP:str,
-                 Cholesterol:str,
-                 Na_to_K:str):
+    def __init__(self,Age:int,Sex:str,BP:str,Cholesterol:str,Na_to_K:float):
         
-
         self.Age=Age
         self.Sex=Sex
         self.BP=BP

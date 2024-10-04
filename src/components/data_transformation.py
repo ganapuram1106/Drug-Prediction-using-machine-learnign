@@ -31,6 +31,12 @@ class DataTransformation:
             numerical_columns=["Age","Na_to_K"]
             categorical_columns=["BP","Sex","Cholesterol"]
 
+            categories = [
+                ['male', 'female'],           # Sex categories
+                ['low', 'normal', 'high'],    # BP categories
+                ['normal', 'high']             # Cholesterol categories
+            ]
+
             num_pipeline=Pipeline(
                 steps=[
                     ('scaler',StandardScaler()),
@@ -39,7 +45,7 @@ class DataTransformation:
             )
             cat_pipeline=Pipeline(
                 steps=[
-                    ("label",OneHotEncoder()),
+                    ("label",OneHotEncoder(handle_unknown="ignore")),
                     ("imputer",SimpleImputer(strategy='most_frequent'))
                 ]
             )

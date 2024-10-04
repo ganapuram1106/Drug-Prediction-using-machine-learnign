@@ -5,7 +5,7 @@ import os
 import numpy as np
 import pandas as pd
 
-from src.pipeline.predict_pipeline import CustomData,predictPipeline
+from src.pipeline.predict_pipeline import CustomData, predictPipeline
 from sklearn.preprocessing import StandardScaler
 
 

@@ -46,7 +46,7 @@ class modelTrainer:
             params={
                 "LogisticRegression": {
                     'penalty': ['l1', 'l2'],
-                    'solver': ['lbfgs', 'liblinear'],
+                    'solver': [ 'liblinear'],
                     'C': [0.1, 1.0, 10],
                     'max_iter':[500]
                 },
