@@ -15,7 +15,7 @@ app=web_application
 @app.route('/')
 
 def index():
-    return render_template('index,html')
+    return render_template('index.html')
 
 
 @app.route('/predict', methods=['GET','POST'])
@@ -25,11 +25,11 @@ def predict():
         return render_template('home.html')
     else:
         data=CustomData(
-            Age=request.form.get('Age'),
-            Sex=request.form.get('Sex'),
-            BP=request.form.get('BP'),
-            Cholesterol=request.form.get('Cholesterol'),
-            Na_to_K=request.form.get('Na_to_K')
+            Age=request.form.get('age'),
+            Sex=request.form.get('sex'),
+            BP=request.form.get('bp'),
+            Cholesterol=request.form.get('cholesterol'),
+            Na_to_K=request.form.get('na_to_k')
         )
 
 
@@ -39,8 +39,10 @@ def predict():
 
         predict_pipeline=predictPipeline()
         print("Mid Prediction")
+
         results=predict_pipeline.predict(pred_df)
         print("after Prediction")
+
         return render_template('home.html',results=results[0])
     
 
