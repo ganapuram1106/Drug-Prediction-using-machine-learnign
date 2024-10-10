@@ -39,4 +39,4 @@ def test_predict_post(client):
 def test_404_page(client):
     """Test a non-existing page (404 error)"""
     response = client.get('/nonexistentpage')  
-    assert response.status_code == 404         
+    assert response.status_code == 404

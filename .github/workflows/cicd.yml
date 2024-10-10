@@ -58,6 +58,9 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./DockerFile
+          file: ./dockerfile
           push: true
           tags: ${{secrets.DOCKER_USERNAME }}/flask-app:latest
+
+      - name: Image digest
+        run: echo "Image successfully built and pushed!"
