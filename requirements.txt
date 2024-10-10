@@ -6,4 +6,5 @@ scikit-learn
 Flask
 dill
 pytest
+pytest-mock
 -e.
