@@ -1,1 +1,45 @@
-<h2>welcome to drug prediction </h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drug Prediction System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+    <header class="header-class">
+        <h2>Drug Prediction System</h2>
+        <nav class="nav-links">
+            <ul>
+                <li><a href="#login">Login</a></li>
+                <li><a href="#register">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="intro-section">
+            <h2>Welcome to the Drug Prediction System</h2>
+            <p>This system helps healthcare providers predict drug treatments based on patient data. By leveraging advanced algorithms and machine learning techniques, we ensure accurate predictions that can assist in improving patient outcomes.</p>
+            <p>Our platform is designed to support healthcare professionals in making informed decisions, thereby streamlining treatment processes.</p>
+            <p>Click below to check the drug prediction for specific conditions.</p>
+            <a href="{{ url_for('predict_datapoint') }}" class="check-button">Check Drug Prediction</a>
+        </section>
+
+        <section class="info-section">
+            <h2>Why Choose Our Drug Prediction System?</h2>
+            <p>Our Drug Prediction System provides a comprehensive solution for the healthcare industry. By integrating data analytics with clinical expertise, we offer:</p>
+            <ul>
+                <li>Real-time predictions based on up-to-date medical data</li>
+                <li>User-friendly interface for easy navigation</li>
+                <li>Secure data handling and compliance with healthcare regulations</li>
+            </ul>
+            <p>Join us in transforming healthcare with innovative technology that puts patient care at the forefront.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Drug Prediction System. All rights reserved.</p>
+    </footer>
+</body>
+</html>
