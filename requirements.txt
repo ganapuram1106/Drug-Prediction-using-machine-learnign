@@ -9,4 +9,5 @@ pytest
 pytest-mock
 werkzeug
 flask-sqlalchemy
+psycopg2-binary
 -e.
