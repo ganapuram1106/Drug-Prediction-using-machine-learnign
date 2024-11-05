@@ -8,5 +8,5 @@ dill
 pytest
 pytest-mock
 werkzeug
-sqlalchemy
+flask-sqlalchemy
 -e.
