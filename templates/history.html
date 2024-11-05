@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='history.css') }}">
+</head>
+<body>
+    <header class="header">
+        <h2>Prediction History</h2>
+        <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
+    </header>
+
+    <main class="main-content">
+        <p>Click the button below to make a new drug prediction:</p>
+        <a href="{{ url_for('predict_datapoint') }}" class="predict-button">Predict Drug</a>
+
+        <section class="history-section">
+            <h3>Previous Predictions</h3>
+            <ul class="history-list">
+                {% for record in history_records %}
+                    <li class="history-item">
+                        <span><strong>Age:</strong> {{ record.age }}</span>
+                        <span><strong>Sex:</strong> {{ record.sex }}</span>
+                        <span><strong>BP:</strong> {{ record.bp }}</span>
+                        <span><strong>Cholesterol:</strong> {{ record.cholesterol }}</span>
+                        <span><strong>Na to K:</strong> {{ record.na_to_k }}</span>
+                        <span><strong>Result:</strong> {{ record.result }}</span>
+                        <span class="timestamp">{{ record.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
+</body>
+</html>

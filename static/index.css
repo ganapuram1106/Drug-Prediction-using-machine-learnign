@@ -1,11 +1,11 @@
-/* Reset default browser styles */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Basic Body Styling */
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
@@ -13,7 +13,7 @@ body {
     line-height: 1.6;
 }
 
-/* Header Styling */
+
 .header-class {
     background-color: #5cb85c;
     color: white;
@@ -47,7 +47,7 @@ body {
     text-decoration: underline;
 }
 
-/* Main Content Styling */
+
 main {
     display: flex;
     flex-direction: column;
@@ -57,10 +57,10 @@ main {
 }
 
 .intro-section {
-    text-align: justify; /* Justified text */
-    max-width: 800px; /* Limit width for better readability */
+    text-align: justify; 
+    max-width: 800px;
     padding: 40px 20px;
-    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+    background-color: rgba(255, 255, 255, 0.9); 
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
@@ -79,14 +79,13 @@ main {
 
 /* Image Styling */
 .healthcare-image {
-    width: 100%; /* Responsive width */
+    width: 100%; 
     max-width: 600px; /* Max width for image */
     height: auto; /* Maintain aspect ratio */
     border-radius: 10px; /* Rounded corners */
     margin: 20px 0; /* Space around the image */
 }
 
-/* Button Styling */
 .check-button {
     display: inline-block;
     padding: 12px 25px;
@@ -104,9 +103,9 @@ main {
     background-color: #4a9c4a;
 }
 
-/* Info Section Styling */
+
 .info-section {
-    text-align: justify; /* Justified text */
+    text-align: justify; 
     max-width: 800px; /* Limit width for better readability */
     padding: 40px 20px;
     background-color: rgba(255, 255, 255, 0.9);

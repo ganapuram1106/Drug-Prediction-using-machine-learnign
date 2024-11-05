@@ -1,0 +1,32 @@
+@app.route('/predictdata', methods=['GET', 'POST'])
+def predict_datapoint():
+    if 'user_id' not in session:
+        flash('Please log in to access this page', 'warning')
+        return redirect(url_for('login'))
+    
+    if request.method == 'GET':
+        return render_template('home2.html')
+    else:
+        data = CustomData(
+            Age=int(request.form.get('age')),
+            Sex=request.form.get('sex'),
+            BP=request.form.get('bp'),
+            Cholesterol=request.form.get('cholesterol'),
+            Na_to_K=float(request.form.get('na_to_k'))
+        )
+        pred_df = data.get_data_as_data_frame()
+        predict_pipeline = PredictPipeline()
+        results = predict_pipeline.predict(pred_df)
+
+        new_history = PredictionHistory(
+            user_id=session['user_id'],
+            prediction_result=results[0],  # Assuming results[0] contains the prediction
+            age=age,
+            bp=bp,
+            cholesterol=cholesterol,
+            na_to_k=na_to_k
+        )
+        db.session.add(new_history)
+        db.session.commit()
+        
+        return render_template('home2.html', results=results[0])
