@@ -1,5 +1,12 @@
+import pytest
 from unittest.mock import patch
-from app import app  # Make sure to import your Flask app here
+from app import app  # Adjust the import path to your Flask app
+
+@pytest.fixture
+def client():
+    """Fixture to create a Flask test client."""
+    with app.test_client() as client:
+        yield client
 
 @patch('src.pipeline.predict_pipeline.PredictPipeline.predict')
 def test_predict_post(mock_predict, client):
