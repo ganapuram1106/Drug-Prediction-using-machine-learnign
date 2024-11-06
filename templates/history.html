@@ -21,6 +21,7 @@
             <ul class="history-list">
                 {% for record in history_records %}
                     <li class="history-item">
+                        <span><strong>Pateint:</strong> {{ record.name }}</span>
                         <span><strong>Age:</strong> {{ record.age }}</span>
                         <span><strong>Sex:</strong> {{ record.sex }}</span>
                         <span><strong>BP:</strong> {{ record.bp }}</span>

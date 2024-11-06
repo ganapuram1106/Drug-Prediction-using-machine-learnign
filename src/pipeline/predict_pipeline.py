@@ -29,8 +29,9 @@ class PredictPipeline:
 
 
 class CustomData:
-    def __init__(self,Age:int,Sex:str,BP:str,Cholesterol:str,Na_to_K:float):
-        
+    def __init__(self,Name:str,Age:int,Sex:str,BP:str,Cholesterol:str,Na_to_K:float):
+
+        self.Name=Name
         self.Age=Age
         self.Sex=Sex
         self.BP=BP
@@ -41,6 +42,7 @@ class CustomData:
     def get_data_as_data_frame(self):
         try:
             custom_data_input_dict={
+                "Name":[self.Name],
                 "Age":[self.Age],
                 "Sex":[self.Sex],
                 "BP":[self.BP],

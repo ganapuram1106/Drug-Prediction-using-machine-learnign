@@ -18,8 +18,8 @@ db=SQLAlchemy(app)
 
 class employee(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    name=db.Column(db.String(100),nullable=False)
     emp_id = db.Column(db.String(50), unique=True, nullable=False)
-    name = db.Column(db.String(100), nullable=False)
     designation = db.Column(db.String(100), nullable=False)
     hospital_code = db.Column(db.Integer, nullable=False)
     password_hash = db.Column(db.String(200), nullable=False)
@@ -35,6 +35,7 @@ class employee(db.Model):
 class PredictionHistory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     emp_id = db.Column(db.String(50), db.ForeignKey('employee.emp_id'), nullable=False)
+    name=db.Column(db.String(100),nullable=False)
     age = db.Column(db.Integer, nullable=False)
     sex = db.Column(db.String(10), nullable=False)
     bp = db.Column(db.String(20), nullable=False)
@@ -43,8 +44,9 @@ class PredictionHistory(db.Model):
     result = db.Column(db.String(100), nullable=False)
     timestamp = db.Column(db.DateTime, default=db.func.current_timestamp())
 
-    def __init__(self, emp_id, age, sex, bp, cholesterol, na_to_k, result):
+    def __init__(self, emp_id,name, age, sex, bp, cholesterol, na_to_k, result):
         self.emp_id = emp_id
+        self.name=name
         self.age = age
         self.sex = sex
         self.bp = bp
@@ -73,6 +75,7 @@ def predict_datapoint():
         return render_template('home2.html')
     else:
         # Retrieve form data and assign to variables
+        name=request.form.get('name')
         age = int(request.form.get('age'))
         sex = request.form.get('sex')
         bp = request.form.get('bp')
@@ -81,6 +84,7 @@ def predict_datapoint():
 
         # Prepare data for prediction
         data = CustomData(
+            Name=name,
             Age=age,
             Sex=sex,
             BP=bp,
@@ -95,6 +99,7 @@ def predict_datapoint():
         # Save the prediction result and details to the database
         new_history = PredictionHistory(
             emp_id=session['user_id'],  # Assuming 'emp_id' matches 'user_id' in the session
+            name=name,
             age=age,
             sex=sex,
             bp=bp,
@@ -109,8 +114,8 @@ def predict_datapoint():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        name = request.form['name']
         emp_id = request.form['emp_id']
+        name=request.form['name']
         designation = request.form['designation']
         hospital_code = request.form['hospital_code']
         password = request.form['password']
@@ -125,7 +130,7 @@ def register():
         else:
             # Hash the password and create a new Employee entry
             hashed_password = generate_password_hash(password)
-            new_employee = employee(emp_id=emp_id, name=name, designation=designation,
+            new_employee = employee(emp_id=emp_id,name=name,designation=designation,
                                     hospital_code=hospital_code, password_hash=hashed_password)
             db.session.add(new_employee)
             db.session.commit()
