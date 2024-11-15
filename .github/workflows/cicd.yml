@@ -18,7 +18,7 @@ jobs:
         env:
           POSTGRES_DB: drug_prediction
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: Gvrganga892014.
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}  # Use GitHub secret
         options: >-
           --health-cmd="pg_isready -U postgres"
           --health-interval=10s
@@ -31,7 +31,7 @@ jobs:
         uses: actions/checkout@v3
 
       # Step 2: Set up Python environment
-      - name: Set up Python 
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: 3.7
@@ -42,7 +42,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # Step 4: Run tests (using pytest)
+      # Step 4: Set up environment variables
+      - name: Set environment variables
+        run: |
+          echo "DB_CONNECTIONS=postgresql://postgres:${{ secrets.POSTGRES_PASSWORD }}@localhost:5432/drug_prediction" >> $GITHUB_ENV
+          echo "key=${{ secrets.SECRET_KEY }}" >> $GITHUB_ENV
+
+      # Step 5: Run tests (using pytest)
       - name: Run unit tests
         run: |
           pytest
@@ -67,15 +73,14 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      
-          # Step 4: Build the Docker image
+      # Step 4: Build and push Docker image
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./DockerFile
+          file: ./Dockerfile  # Ensure this path is correct
           push: true
-          tags: ${{secrets.DOCKER_USERNAME }}/flask-app:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/flask-app:latest
 
       - name: Image digest
         run: echo "Image successfully built and pushed!"
