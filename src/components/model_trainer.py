@@ -43,34 +43,7 @@ class modelTrainer:
 
             }
 
-            params={
-                "LogisticRegression": {
-                    'penalty': ['l1', 'l2'],
-                    'solver': [ 'liblinear'],
-                    'C': [0.1, 1.0, 10],
-                    'max_iter':[500]
-                },
-
-                "RandomForest": {
-                    'n_estimators': [100, 200],
-                    'criterion': ['gini', 'entropy'],
-                    'max_depth': [10, 20, None],
-                },
-
-                "SVM": {
-                    'kernel': ['linear', 'rbf'],
-                    'C': [1, 10],
-                },  
-
-                "KNN": {
-                    'n_neighbors': [5, 7, 9],
-                    'weights': ['uniform', 'distance']
-                }
-
-                
-            }
-
-            model_report:dict=evaluate_models(X_train=X_train,y_train=y_train,X_test=X_test,y_test=y_test,models=models,param=params)
+            model_report:dict=evaluate_models(X_train=X_train,y_train=y_train,X_test=X_test,y_test=y_test,models=models)
 
             ## To get best model score from dict
             best_model_score = max(sorted(model_report.values()))

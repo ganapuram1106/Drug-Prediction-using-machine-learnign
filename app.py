@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
+from config import Config
 import numpy as np
 import pandas as pd
 
@@ -10,9 +11,8 @@ from src.pipeline.predict_pipeline import CustomData, PredictPipeline
 application = Flask(__name__)
 
 app = application
-app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:Gvrganga892014.@localhost:5432/drug_prediction'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
-app.secret_key = 'drug'
+app.config.from_object(Config)
+
 
 db=SQLAlchemy(app)
 
