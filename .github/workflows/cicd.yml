@@ -45,8 +45,8 @@ jobs:
       # Step 4: Set up environment variables
       - name: Set environment variables
         run: |
-          echo "DB_CONNECTIONS=postgresql://postgres:${{ secrets.POSTGRES_PASSWORD }}@localhost:5432/drug_prediction" >> $GITHUB_ENV
-          echo "key=${{ secrets.SECRET_KEY }}" >> $GITHUB_ENV
+          echo "SQLALCHEMY=postgresql://postgres:${{ secrets.POSTGRES_PASSWORD }}@localhost:5432/drug_prediction" >> $GITHUB_ENV
+          echo "KEY=${{ secrets.SECRET_KEY }}" >> $GITHUB_ENV
 
       # Step 5: Run tests (using pytest)
       - name: Run unit tests
